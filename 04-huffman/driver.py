@@ -72,5 +72,5 @@ for pair,freq in freq.items():
 
 huffman_pairs = Huffman(pair_prob)
 huffman_pairs.encode(as_pairs, args.out3)
-print('Source entropy based on pair probabilities is {:1.2f}'.format(huffman_pairs.entropy()))
-print('Average codeword length is {:1.2f}'.format(huffman_pairs.average_code_len()))
+print('Source entropy based on pair probabilities is {:1.2f}'.format(huffman_pairs.entropy()/2))
+print('Average codeword length is {:1.2f}'.format(huffman_pairs.average_code_len()/2))

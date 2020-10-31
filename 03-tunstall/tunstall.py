@@ -63,3 +63,17 @@ ttb = TunstallTreeBuilder(prob)
 codes = ttb.build(int(args.D), int(args.n))
 for (source, code) in codes.items():
     print('{:10s}: {:s}'.format(source, code))
+
+av_len = 0
+for (source, code) in codes.items():
+    seq_prob = 1
+    for sym in source:
+        seq_prob *= ttb.probs[sym]
+    av_len += len(source) * seq_prob
+
+print('Average number of code symbols for source symbol = {:1.2f}'.format(float(args.n) / av_len))
+
+entropy = 0
+for (_,p) in ttb.probs.items():
+    entropy -= p * math.log(p,2)
+print('Theoretical lower bound = {:1.2f}'.format(entropy / math.log(float(args.D),2)))
